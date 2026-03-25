@@ -331,7 +331,7 @@ const submitButton = blessed.button({
   parent: controlsBox,
   top: 10,
   left: 1,
-  width: "31%",
+  width: "23%",
   height: 3,
   mouse: true,
   keys: true,
@@ -349,8 +349,8 @@ const submitButton = blessed.button({
 const runButton = blessed.button({
   parent: controlsBox,
   top: 10,
-  left: "34%",
-  width: "31%",
+  left: "26%",
+  width: "23%",
   height: 3,
   mouse: true,
   keys: true,
@@ -368,8 +368,8 @@ const runButton = blessed.button({
 const daemonButton = blessed.button({
   parent: controlsBox,
   top: 10,
-  left: "67%",
-  width: "31%",
+  left: "51%",
+  width: "23%",
   height: 3,
   mouse: true,
   keys: true,
@@ -381,6 +381,25 @@ const daemonButton = blessed.button({
     focus: { bg: "red", fg: "white" },
     hover: { bg: "red", fg: "white" },
     border: { fg: "red" },
+  },
+});
+
+const quitButton = blessed.button({
+  parent: controlsBox,
+  top: 10,
+  left: "76%",
+  width: "22%",
+  height: 3,
+  mouse: true,
+  keys: true,
+  align: "center",
+  valign: "middle",
+  content: "Quit UI",
+  border: "line",
+  style: {
+    focus: { bg: "white", fg: "black" },
+    hover: { bg: "white", fg: "black" },
+    border: { fg: "white" },
   },
 });
 
@@ -407,7 +426,7 @@ const logBox = blessed.box({
   },
 });
 
-const focusables = [input, typeList, modeList, dateInput, submitButton, runButton, daemonButton];
+const focusables = [input, typeList, modeList, dateInput, submitButton, runButton, daemonButton, quitButton];
 let focusIndex = 0;
 
 function setFeedback(message: string, level: FeedbackLevel = "info", ttlMs = 5000) {
@@ -561,6 +580,11 @@ function toggleDaemon() {
   render();
 }
 
+function quitApp() {
+  screen.destroy();
+  process.exit(0);
+}
+
 function render() {
   if (feedback && feedback.expiresAt <= Date.now()) {
     feedback = null;
@@ -573,8 +597,7 @@ function render() {
 }
 
 screen.key(["q", "C-c"], () => {
-  screen.destroy();
-  process.exit(0);
+  quitApp();
 });
 
 screen.key(["tab"], () => {
@@ -614,6 +637,10 @@ runButton.on("press", () => {
 
 daemonButton.on("press", () => {
   toggleDaemon();
+});
+
+quitButton.on("press", () => {
+  quitApp();
 });
 
 input.focus();
