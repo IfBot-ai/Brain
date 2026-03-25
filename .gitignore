@@ -1,0 +1,20 @@
+node_modules/
+.DS_Store
+.env
+.stfolder/
+.stignore
+.syncthing*
+
+# Runtime state
+.daemon-state.json
+.daemon-state.sync-conflict-*.json
+.daemon.pid
+brain.log
+log.jsonl
+log.sync-conflict-*.jsonl
+
+# Local memory database
+memory/.locks/
+memory/*.json
+memory/*.sync-conflict-*.json
+!memory/.gitkeep

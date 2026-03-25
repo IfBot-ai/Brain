@@ -1,0 +1,20 @@
+{
+  "name": "brain",
+  "version": "2.0.0",
+  "scripts": {
+    "start": "bun run brain-tui.ts",
+    "daemon": "bun run daemon.ts",
+    "loop": "bun run loop.ts",
+    "inbox": "bun run inbox-add.ts",
+    "tui": "bun run brain-tui.ts",
+    "web": "bun run inbox-web.ts",
+    "status": "bun run brain-status.ts",
+    "tasks": "bun run brain-status.ts --tasks",
+    "future": "bun run brain-status.ts --future",
+    "log": "bun run brain-status.ts --log"
+  },
+  "dependencies": {
+    "@types/blessed": "^0.1.27",
+    "blessed": "^0.1.81"
+  }
+}
